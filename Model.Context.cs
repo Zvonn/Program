@@ -26,17 +26,13 @@ namespace Program
         }
     
         public virtual DbSet<Appointments> Appointments { get; set; }
-        public virtual DbSet<ChangeLog> ChangeLog { get; set; }
         public virtual DbSet<Doctors> Doctors { get; set; }
         public virtual DbSet<DoctorSchedules> DoctorSchedules { get; set; }
         public virtual DbSet<DoctorWorkSchedules> DoctorWorkSchedules { get; set; }
         public virtual DbSet<FinancialTransactions> FinancialTransactions { get; set; }
         public virtual DbSet<MedicalRecords> MedicalRecords { get; set; }
-        public virtual DbSet<Medications> Medications { get; set; }
         public virtual DbSet<Passwords> Passwords { get; set; }
-        public virtual DbSet<PatientFeedback> PatientFeedback { get; set; }
         public virtual DbSet<Patients> Patients { get; set; }
-        public virtual DbSet<Prescriptions> Prescriptions { get; set; }
         public virtual DbSet<Reports> Reports { get; set; }
         public virtual DbSet<Services_> Services_ { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }

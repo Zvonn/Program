@@ -20,8 +20,6 @@ namespace Program
             this.Appointments = new HashSet<Appointments>();
             this.DoctorSchedules = new HashSet<DoctorSchedules>();
             this.DoctorWorkSchedules = new HashSet<DoctorWorkSchedules>();
-            this.PatientFeedback = new HashSet<PatientFeedback>();
-            this.Prescriptions = new HashSet<Prescriptions>();
         }
     
         public int DoctorID { get; set; }
@@ -35,9 +33,5 @@ namespace Program
         public virtual ICollection<DoctorSchedules> DoctorSchedules { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DoctorWorkSchedules> DoctorWorkSchedules { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PatientFeedback> PatientFeedback { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prescriptions> Prescriptions { get; set; }
     }
 }

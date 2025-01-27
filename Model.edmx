@@ -16,17 +16,6 @@
           <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="ChangeLog">
-          <Key>
-            <PropertyRef Name="LogID" />
-          </Key>
-          <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TableName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="RecordID" Type="int" Nullable="false" />
-          <Property Name="ChangeType" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ChangeDate" Type="datetime" Nullable="false" />
-          <Property Name="ChangedBy" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Doctors">
           <Key>
             <PropertyRef Name="DoctorID" />
@@ -76,14 +65,6 @@
           <Property Name="Recommendations" Type="nvarchar(max)" />
           <Property Name="TreatmentHistory" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Medications">
-          <Key>
-            <PropertyRef Name="MedicationID" />
-          </Key>
-          <Property Name="MedicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MedicationName" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" />
-        </EntityType>
         <EntityType Name="Passwords">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -92,17 +73,6 @@
           <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PasswordHash" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Salt" Type="nvarchar" MaxLength="255" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PatientFeedback">
-          <Key>
-            <PropertyRef Name="FeedbackID" />
-          </Key>
-          <Property Name="FeedbackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PatientID" Type="int" Nullable="false" />
-          <Property Name="DoctorID" Type="int" Nullable="false" />
-          <Property Name="Rating" Type="int" Nullable="false" />
-          <Property Name="Comment" Type="nvarchar(max)" />
-          <Property Name="FeedbackDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Patients">
           <Key>
@@ -114,17 +84,6 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="255" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="Prescriptions">
-          <Key>
-            <PropertyRef Name="PrescriptionID" />
-          </Key>
-          <Property Name="PrescriptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PatientID" Type="int" Nullable="false" />
-          <Property Name="DoctorID" Type="int" Nullable="false" />
-          <Property Name="MedicationID" Type="int" Nullable="false" />
-          <Property Name="Dosage" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Instructions" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Reports">
           <Key>
@@ -163,7 +122,7 @@
           <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Appointme__Docto__76969D2E">
+        <Association Name="FK__Appointme__Docto__30C33EC3">
           <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
           <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -175,7 +134,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Appointme__Patie__75A278F5">
+        <Association Name="FK__Appointme__Patie__2FCF1A8A">
           <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
           <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -187,19 +146,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ChangeLog__Chang__19DFD96B">
-          <End Role="Passwords" Type="Self.Passwords" Multiplicity="1" />
-          <End Role="ChangeLog" Type="Self.ChangeLog" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Passwords">
-              <PropertyRef Name="AdminID" />
-            </Principal>
-            <Dependent Role="ChangeLog">
-              <PropertyRef Name="ChangedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__DoctorSch__Docto__02FC7413">
+        <Association Name="FK__DoctorSch__Docto__3D2915A8">
           <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
           <End Role="DoctorSchedules" Type="Self.DoctorSchedules" Multiplicity="*" />
           <ReferentialConstraint>
@@ -211,7 +158,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DoctorWor__Docto__6FE99F9F">
+        <Association Name="FK__DoctorWor__Docto__46B27FE2">
           <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
           <End Role="DoctorWorkSchedules" Type="Self.DoctorWorkSchedules" Multiplicity="*" />
           <ReferentialConstraint>
@@ -223,7 +170,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Financial__Patie__7F2BE32F">
+        <Association Name="FK__Financial__Patie__395884C4">
           <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
           <End Role="FinancialTransactions" Type="Self.FinancialTransactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -235,7 +182,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Financial__Servi__00200768">
+        <Association Name="FK__Financial__Servi__3A4CA8FD">
           <End Role="Services_" Type="Self.Services_" Multiplicity="1" />
           <End Role="FinancialTransactions" Type="Self.FinancialTransactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -247,7 +194,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MedicalRe__Patie__797309D9">
+        <Association Name="FK__MedicalRe__Patie__339FAB6E">
           <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
           <End Role="MedicalRecords" Type="Self.MedicalRecords" Multiplicity="*" />
           <ReferentialConstraint>
@@ -259,67 +206,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PatientFe__Docto__0D7A0286">
-          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
-          <End Role="PatientFeedback" Type="Self.PatientFeedback" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doctors">
-              <PropertyRef Name="DoctorID" />
-            </Principal>
-            <Dependent Role="PatientFeedback">
-              <PropertyRef Name="DoctorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PatientFe__Patie__0C85DE4D">
-          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
-          <End Role="PatientFeedback" Type="Self.PatientFeedback" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Patients">
-              <PropertyRef Name="PatientID" />
-            </Principal>
-            <Dependent Role="PatientFeedback">
-              <PropertyRef Name="PatientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Prescript__Docto__151B244E">
-          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
-          <End Role="Prescriptions" Type="Self.Prescriptions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doctors">
-              <PropertyRef Name="DoctorID" />
-            </Principal>
-            <Dependent Role="Prescriptions">
-              <PropertyRef Name="DoctorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Prescript__Medic__160F4887">
-          <End Role="Medications" Type="Self.Medications" Multiplicity="1" />
-          <End Role="Prescriptions" Type="Self.Prescriptions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Medications">
-              <PropertyRef Name="MedicationID" />
-            </Principal>
-            <Dependent Role="Prescriptions">
-              <PropertyRef Name="MedicationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Prescript__Patie__14270015">
-          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
-          <End Role="Prescriptions" Type="Self.Prescriptions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Patients">
-              <PropertyRef Name="PatientID" />
-            </Principal>
-            <Dependent Role="Prescriptions">
-              <PropertyRef Name="PatientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Reports__Generat__09A971A2">
+        <Association Name="FK__Reports__Generat__43D61337">
           <End Role="Passwords" Type="Self.Passwords" Multiplicity="1" />
           <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
           <ReferentialConstraint>
@@ -333,74 +220,46 @@
         </Association>
         <EntityContainer Name="Хранилище cln_vladModelContainer">
           <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ChangeLog" EntityType="Self.ChangeLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoctorSchedules" EntityType="Self.DoctorSchedules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoctorWorkSchedules" EntityType="Self.DoctorWorkSchedules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FinancialTransactions" EntityType="Self.FinancialTransactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MedicalRecords" EntityType="Self.MedicalRecords" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Medications" EntityType="Self.Medications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Passwords" EntityType="Self.Passwords" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PatientFeedback" EntityType="Self.PatientFeedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Prescriptions" EntityType="Self.Prescriptions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Services_" EntityType="Self.Services_" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Appointme__Docto__76969D2E" Association="Self.FK__Appointme__Docto__76969D2E">
+          <AssociationSet Name="FK__Appointme__Docto__30C33EC3" Association="Self.FK__Appointme__Docto__30C33EC3">
             <End Role="Doctors" EntitySet="Doctors" />
             <End Role="Appointments" EntitySet="Appointments" />
           </AssociationSet>
-          <AssociationSet Name="FK__Appointme__Patie__75A278F5" Association="Self.FK__Appointme__Patie__75A278F5">
+          <AssociationSet Name="FK__Appointme__Patie__2FCF1A8A" Association="Self.FK__Appointme__Patie__2FCF1A8A">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="Appointments" EntitySet="Appointments" />
           </AssociationSet>
-          <AssociationSet Name="FK__ChangeLog__Chang__19DFD96B" Association="Self.FK__ChangeLog__Chang__19DFD96B">
-            <End Role="Passwords" EntitySet="Passwords" />
-            <End Role="ChangeLog" EntitySet="ChangeLog" />
-          </AssociationSet>
-          <AssociationSet Name="FK__DoctorSch__Docto__02FC7413" Association="Self.FK__DoctorSch__Docto__02FC7413">
+          <AssociationSet Name="FK__DoctorSch__Docto__3D2915A8" Association="Self.FK__DoctorSch__Docto__3D2915A8">
             <End Role="Doctors" EntitySet="Doctors" />
             <End Role="DoctorSchedules" EntitySet="DoctorSchedules" />
           </AssociationSet>
-          <AssociationSet Name="FK__DoctorWor__Docto__6FE99F9F" Association="Self.FK__DoctorWor__Docto__6FE99F9F">
+          <AssociationSet Name="FK__DoctorWor__Docto__46B27FE2" Association="Self.FK__DoctorWor__Docto__46B27FE2">
             <End Role="Doctors" EntitySet="Doctors" />
             <End Role="DoctorWorkSchedules" EntitySet="DoctorWorkSchedules" />
           </AssociationSet>
-          <AssociationSet Name="FK__Financial__Patie__7F2BE32F" Association="Self.FK__Financial__Patie__7F2BE32F">
+          <AssociationSet Name="FK__Financial__Patie__395884C4" Association="Self.FK__Financial__Patie__395884C4">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="FinancialTransactions" EntitySet="FinancialTransactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Financial__Servi__00200768" Association="Self.FK__Financial__Servi__00200768">
+          <AssociationSet Name="FK__Financial__Servi__3A4CA8FD" Association="Self.FK__Financial__Servi__3A4CA8FD">
             <End Role="Services_" EntitySet="Services_" />
             <End Role="FinancialTransactions" EntitySet="FinancialTransactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__MedicalRe__Patie__797309D9" Association="Self.FK__MedicalRe__Patie__797309D9">
+          <AssociationSet Name="FK__MedicalRe__Patie__339FAB6E" Association="Self.FK__MedicalRe__Patie__339FAB6E">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="MedicalRecords" EntitySet="MedicalRecords" />
           </AssociationSet>
-          <AssociationSet Name="FK__PatientFe__Docto__0D7A0286" Association="Self.FK__PatientFe__Docto__0D7A0286">
-            <End Role="Doctors" EntitySet="Doctors" />
-            <End Role="PatientFeedback" EntitySet="PatientFeedback" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PatientFe__Patie__0C85DE4D" Association="Self.FK__PatientFe__Patie__0C85DE4D">
-            <End Role="Patients" EntitySet="Patients" />
-            <End Role="PatientFeedback" EntitySet="PatientFeedback" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Prescript__Docto__151B244E" Association="Self.FK__Prescript__Docto__151B244E">
-            <End Role="Doctors" EntitySet="Doctors" />
-            <End Role="Prescriptions" EntitySet="Prescriptions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Prescript__Medic__160F4887" Association="Self.FK__Prescript__Medic__160F4887">
-            <End Role="Medications" EntitySet="Medications" />
-            <End Role="Prescriptions" EntitySet="Prescriptions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Prescript__Patie__14270015" Association="Self.FK__Prescript__Patie__14270015">
-            <End Role="Patients" EntitySet="Patients" />
-            <End Role="Prescriptions" EntitySet="Prescriptions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reports__Generat__09A971A2" Association="Self.FK__Reports__Generat__09A971A2">
+          <AssociationSet Name="FK__Reports__Generat__43D61337" Association="Self.FK__Reports__Generat__43D61337">
             <End Role="Passwords" EntitySet="Passwords" />
             <End Role="Reports" EntitySet="Reports" />
           </AssociationSet>
@@ -420,20 +279,8 @@
           <Property Name="AppointmentDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Doctors" Relationship="Self.FK__Appointme__Docto__76969D2E" FromRole="Appointments" ToRole="Doctors" />
-          <NavigationProperty Name="Patients" Relationship="Self.FK__Appointme__Patie__75A278F5" FromRole="Appointments" ToRole="Patients" />
-        </EntityType>
-        <EntityType Name="ChangeLog">
-          <Key>
-            <PropertyRef Name="LogID" />
-          </Key>
-          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RecordID" Type="Int32" Nullable="false" />
-          <Property Name="ChangeType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ChangeDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ChangedBy" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Passwords" Relationship="Self.FK__ChangeLog__Chang__19DFD96B" FromRole="ChangeLog" ToRole="Passwords" />
+          <NavigationProperty Name="Doctors" Relationship="Self.FK__Appointme__Docto__30C33EC3" FromRole="Appointments" ToRole="Doctors" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Appointme__Patie__2FCF1A8A" FromRole="Appointments" ToRole="Patients" />
         </EntityType>
         <EntityType Name="Doctors">
           <Key>
@@ -443,11 +290,9 @@
           <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Specialization" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ContactDetails" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Appointments" Relationship="Self.FK__Appointme__Docto__76969D2E" FromRole="Doctors" ToRole="Appointments" />
-          <NavigationProperty Name="DoctorSchedules" Relationship="Self.FK__DoctorSch__Docto__02FC7413" FromRole="Doctors" ToRole="DoctorSchedules" />
-          <NavigationProperty Name="DoctorWorkSchedules" Relationship="Self.FK__DoctorWor__Docto__6FE99F9F" FromRole="Doctors" ToRole="DoctorWorkSchedules" />
-          <NavigationProperty Name="PatientFeedback" Relationship="Self.FK__PatientFe__Docto__0D7A0286" FromRole="Doctors" ToRole="PatientFeedback" />
-          <NavigationProperty Name="Prescriptions" Relationship="Self.FK__Prescript__Docto__151B244E" FromRole="Doctors" ToRole="Prescriptions" />
+          <NavigationProperty Name="Appointments" Relationship="Self.FK__Appointme__Docto__30C33EC3" FromRole="Doctors" ToRole="Appointments" />
+          <NavigationProperty Name="DoctorSchedules" Relationship="Self.FK__DoctorSch__Docto__3D2915A8" FromRole="Doctors" ToRole="DoctorSchedules" />
+          <NavigationProperty Name="DoctorWorkSchedules" Relationship="Self.FK__DoctorWor__Docto__46B27FE2" FromRole="Doctors" ToRole="DoctorWorkSchedules" />
         </EntityType>
         <EntityType Name="DoctorSchedules">
           <Key>
@@ -457,7 +302,7 @@
           <Property Name="DoctorID" Type="Int32" Nullable="false" />
           <Property Name="AvailableDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsBooked" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Doctors" Relationship="Self.FK__DoctorSch__Docto__02FC7413" FromRole="DoctorSchedules" ToRole="Doctors" />
+          <NavigationProperty Name="Doctors" Relationship="Self.FK__DoctorSch__Docto__3D2915A8" FromRole="DoctorSchedules" ToRole="Doctors" />
         </EntityType>
         <EntityType Name="DoctorWorkSchedules">
           <Key>
@@ -468,7 +313,7 @@
           <Property Name="DayOfWeek" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
           <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
-          <NavigationProperty Name="Doctors" Relationship="Self.FK__DoctorWor__Docto__6FE99F9F" FromRole="DoctorWorkSchedules" ToRole="Doctors" />
+          <NavigationProperty Name="Doctors" Relationship="Self.FK__DoctorWor__Docto__46B27FE2" FromRole="DoctorWorkSchedules" ToRole="Doctors" />
         </EntityType>
         <EntityType Name="FinancialTransactions">
           <Key>
@@ -480,8 +325,8 @@
           <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Patients" Relationship="Self.FK__Financial__Patie__7F2BE32F" FromRole="FinancialTransactions" ToRole="Patients" />
-          <NavigationProperty Name="Services_" Relationship="Self.FK__Financial__Servi__00200768" FromRole="FinancialTransactions" ToRole="Services_" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__Financial__Patie__395884C4" FromRole="FinancialTransactions" ToRole="Patients" />
+          <NavigationProperty Name="Services_" Relationship="Self.FK__Financial__Servi__3A4CA8FD" FromRole="FinancialTransactions" ToRole="Services_" />
         </EntityType>
         <EntityType Name="MedicalRecords">
           <Key>
@@ -492,16 +337,7 @@
           <Property Name="Diagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Recommendations" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TreatmentHistory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Patients" Relationship="Self.FK__MedicalRe__Patie__797309D9" FromRole="MedicalRecords" ToRole="Patients" />
-        </EntityType>
-        <EntityType Name="Medications">
-          <Key>
-            <PropertyRef Name="MedicationID" />
-          </Key>
-          <Property Name="MedicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MedicationName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Prescriptions" Relationship="Self.FK__Prescript__Medic__160F4887" FromRole="Medications" ToRole="Prescriptions" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK__MedicalRe__Patie__339FAB6E" FromRole="MedicalRecords" ToRole="Patients" />
         </EntityType>
         <EntityType Name="Passwords">
           <Key>
@@ -511,21 +347,7 @@
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PasswordHash" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Salt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="ChangeLog" Relationship="Self.FK__ChangeLog__Chang__19DFD96B" FromRole="Passwords" ToRole="ChangeLog" />
-          <NavigationProperty Name="Reports" Relationship="Self.FK__Reports__Generat__09A971A2" FromRole="Passwords" ToRole="Reports" />
-        </EntityType>
-        <EntityType Name="PatientFeedback">
-          <Key>
-            <PropertyRef Name="FeedbackID" />
-          </Key>
-          <Property Name="FeedbackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PatientID" Type="Int32" Nullable="false" />
-          <Property Name="DoctorID" Type="Int32" Nullable="false" />
-          <Property Name="Rating" Type="Int32" Nullable="false" />
-          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FeedbackDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Doctors" Relationship="Self.FK__PatientFe__Docto__0D7A0286" FromRole="PatientFeedback" ToRole="Doctors" />
-          <NavigationProperty Name="Patients" Relationship="Self.FK__PatientFe__Patie__0C85DE4D" FromRole="PatientFeedback" ToRole="Patients" />
+          <NavigationProperty Name="Reports" Relationship="Self.FK__Reports__Generat__43D61337" FromRole="Passwords" ToRole="Reports" />
         </EntityType>
         <EntityType Name="Patients">
           <Key>
@@ -537,25 +359,9 @@
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Appointments" Relationship="Self.FK__Appointme__Patie__75A278F5" FromRole="Patients" ToRole="Appointments" />
-          <NavigationProperty Name="FinancialTransactions" Relationship="Self.FK__Financial__Patie__7F2BE32F" FromRole="Patients" ToRole="FinancialTransactions" />
-          <NavigationProperty Name="MedicalRecords" Relationship="Self.FK__MedicalRe__Patie__797309D9" FromRole="Patients" ToRole="MedicalRecords" />
-          <NavigationProperty Name="PatientFeedback" Relationship="Self.FK__PatientFe__Patie__0C85DE4D" FromRole="Patients" ToRole="PatientFeedback" />
-          <NavigationProperty Name="Prescriptions" Relationship="Self.FK__Prescript__Patie__14270015" FromRole="Patients" ToRole="Prescriptions" />
-        </EntityType>
-        <EntityType Name="Prescriptions">
-          <Key>
-            <PropertyRef Name="PrescriptionID" />
-          </Key>
-          <Property Name="PrescriptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PatientID" Type="Int32" Nullable="false" />
-          <Property Name="DoctorID" Type="Int32" Nullable="false" />
-          <Property Name="MedicationID" Type="Int32" Nullable="false" />
-          <Property Name="Dosage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Instructions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Doctors" Relationship="Self.FK__Prescript__Docto__151B244E" FromRole="Prescriptions" ToRole="Doctors" />
-          <NavigationProperty Name="Medications" Relationship="Self.FK__Prescript__Medic__160F4887" FromRole="Prescriptions" ToRole="Medications" />
-          <NavigationProperty Name="Patients" Relationship="Self.FK__Prescript__Patie__14270015" FromRole="Prescriptions" ToRole="Patients" />
+          <NavigationProperty Name="Appointments" Relationship="Self.FK__Appointme__Patie__2FCF1A8A" FromRole="Patients" ToRole="Appointments" />
+          <NavigationProperty Name="FinancialTransactions" Relationship="Self.FK__Financial__Patie__395884C4" FromRole="Patients" ToRole="FinancialTransactions" />
+          <NavigationProperty Name="MedicalRecords" Relationship="Self.FK__MedicalRe__Patie__339FAB6E" FromRole="Patients" ToRole="MedicalRecords" />
         </EntityType>
         <EntityType Name="Reports">
           <Key>
@@ -566,7 +372,7 @@
           <Property Name="Period" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ReportData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="GeneratedBy" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Passwords" Relationship="Self.FK__Reports__Generat__09A971A2" FromRole="Reports" ToRole="Passwords" />
+          <NavigationProperty Name="Passwords" Relationship="Self.FK__Reports__Generat__43D61337" FromRole="Reports" ToRole="Passwords" />
         </EntityType>
         <EntityType Name="Services_">
           <Key>
@@ -577,7 +383,7 @@
           <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Duration" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="FinancialTransactions" Relationship="Self.FK__Financial__Servi__00200768" FromRole="Services_" ToRole="FinancialTransactions" />
+          <NavigationProperty Name="FinancialTransactions" Relationship="Self.FK__Financial__Servi__3A4CA8FD" FromRole="Services_" ToRole="FinancialTransactions" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -596,7 +402,7 @@
           <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Appointme__Docto__76969D2E">
+        <Association Name="FK__Appointme__Docto__30C33EC3">
           <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
           <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -608,7 +414,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Appointme__Patie__75A278F5">
+        <Association Name="FK__Appointme__Patie__2FCF1A8A">
           <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
           <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -620,19 +426,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ChangeLog__Chang__19DFD96B">
-          <End Role="Passwords" Type="Self.Passwords" Multiplicity="1" />
-          <End Role="ChangeLog" Type="Self.ChangeLog" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Passwords">
-              <PropertyRef Name="AdminID" />
-            </Principal>
-            <Dependent Role="ChangeLog">
-              <PropertyRef Name="ChangedBy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__DoctorSch__Docto__02FC7413">
+        <Association Name="FK__DoctorSch__Docto__3D2915A8">
           <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
           <End Role="DoctorSchedules" Type="Self.DoctorSchedules" Multiplicity="*" />
           <ReferentialConstraint>
@@ -644,7 +438,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DoctorWor__Docto__6FE99F9F">
+        <Association Name="FK__DoctorWor__Docto__46B27FE2">
           <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
           <End Role="DoctorWorkSchedules" Type="Self.DoctorWorkSchedules" Multiplicity="*" />
           <ReferentialConstraint>
@@ -656,31 +450,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PatientFe__Docto__0D7A0286">
-          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
-          <End Role="PatientFeedback" Type="Self.PatientFeedback" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doctors">
-              <PropertyRef Name="DoctorID" />
-            </Principal>
-            <Dependent Role="PatientFeedback">
-              <PropertyRef Name="DoctorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Prescript__Docto__151B244E">
-          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
-          <End Role="Prescriptions" Type="Self.Prescriptions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Doctors">
-              <PropertyRef Name="DoctorID" />
-            </Principal>
-            <Dependent Role="Prescriptions">
-              <PropertyRef Name="DoctorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Financial__Patie__7F2BE32F">
+        <Association Name="FK__Financial__Patie__395884C4">
           <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
           <End Role="FinancialTransactions" Type="Self.FinancialTransactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -692,7 +462,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Financial__Servi__00200768">
+        <Association Name="FK__Financial__Servi__3A4CA8FD">
           <End Role="Services_" Type="Self.Services_" Multiplicity="1" />
           <End Role="FinancialTransactions" Type="Self.FinancialTransactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -704,7 +474,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MedicalRe__Patie__797309D9">
+        <Association Name="FK__MedicalRe__Patie__339FAB6E">
           <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
           <End Role="MedicalRecords" Type="Self.MedicalRecords" Multiplicity="*" />
           <ReferentialConstraint>
@@ -716,19 +486,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prescript__Medic__160F4887">
-          <End Role="Medications" Type="Self.Medications" Multiplicity="1" />
-          <End Role="Prescriptions" Type="Self.Prescriptions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Medications">
-              <PropertyRef Name="MedicationID" />
-            </Principal>
-            <Dependent Role="Prescriptions">
-              <PropertyRef Name="MedicationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Reports__Generat__09A971A2">
+        <Association Name="FK__Reports__Generat__43D61337">
           <End Role="Passwords" Type="Self.Passwords" Multiplicity="1" />
           <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
           <ReferentialConstraint>
@@ -740,102 +498,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PatientFe__Patie__0C85DE4D">
-          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
-          <End Role="PatientFeedback" Type="Self.PatientFeedback" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Patients">
-              <PropertyRef Name="PatientID" />
-            </Principal>
-            <Dependent Role="PatientFeedback">
-              <PropertyRef Name="PatientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Prescript__Patie__14270015">
-          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
-          <End Role="Prescriptions" Type="Self.Prescriptions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Patients">
-              <PropertyRef Name="PatientID" />
-            </Principal>
-            <Dependent Role="Prescriptions">
-              <PropertyRef Name="PatientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Appointments" EntityType="Self.Appointments" />
-          <EntitySet Name="ChangeLog" EntityType="Self.ChangeLog" />
           <EntitySet Name="Doctors" EntityType="Self.Doctors" />
           <EntitySet Name="DoctorSchedules" EntityType="Self.DoctorSchedules" />
           <EntitySet Name="DoctorWorkSchedules" EntityType="Self.DoctorWorkSchedules" />
           <EntitySet Name="FinancialTransactions" EntityType="Self.FinancialTransactions" />
           <EntitySet Name="MedicalRecords" EntityType="Self.MedicalRecords" />
-          <EntitySet Name="Medications" EntityType="Self.Medications" />
           <EntitySet Name="Passwords" EntityType="Self.Passwords" />
-          <EntitySet Name="PatientFeedback" EntityType="Self.PatientFeedback" />
           <EntitySet Name="Patients" EntityType="Self.Patients" />
-          <EntitySet Name="Prescriptions" EntityType="Self.Prescriptions" />
           <EntitySet Name="Reports" EntityType="Self.Reports" />
           <EntitySet Name="Services_" EntityType="Self.Services_" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" />
-          <AssociationSet Name="FK__Appointme__Docto__76969D2E" Association="Self.FK__Appointme__Docto__76969D2E">
+          <AssociationSet Name="FK__Appointme__Docto__30C33EC3" Association="Self.FK__Appointme__Docto__30C33EC3">
             <End Role="Doctors" EntitySet="Doctors" />
             <End Role="Appointments" EntitySet="Appointments" />
           </AssociationSet>
-          <AssociationSet Name="FK__Appointme__Patie__75A278F5" Association="Self.FK__Appointme__Patie__75A278F5">
+          <AssociationSet Name="FK__Appointme__Patie__2FCF1A8A" Association="Self.FK__Appointme__Patie__2FCF1A8A">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="Appointments" EntitySet="Appointments" />
           </AssociationSet>
-          <AssociationSet Name="FK__ChangeLog__Chang__19DFD96B" Association="Self.FK__ChangeLog__Chang__19DFD96B">
-            <End Role="Passwords" EntitySet="Passwords" />
-            <End Role="ChangeLog" EntitySet="ChangeLog" />
-          </AssociationSet>
-          <AssociationSet Name="FK__DoctorSch__Docto__02FC7413" Association="Self.FK__DoctorSch__Docto__02FC7413">
+          <AssociationSet Name="FK__DoctorSch__Docto__3D2915A8" Association="Self.FK__DoctorSch__Docto__3D2915A8">
             <End Role="Doctors" EntitySet="Doctors" />
             <End Role="DoctorSchedules" EntitySet="DoctorSchedules" />
           </AssociationSet>
-          <AssociationSet Name="FK__DoctorWor__Docto__6FE99F9F" Association="Self.FK__DoctorWor__Docto__6FE99F9F">
+          <AssociationSet Name="FK__DoctorWor__Docto__46B27FE2" Association="Self.FK__DoctorWor__Docto__46B27FE2">
             <End Role="Doctors" EntitySet="Doctors" />
             <End Role="DoctorWorkSchedules" EntitySet="DoctorWorkSchedules" />
           </AssociationSet>
-          <AssociationSet Name="FK__PatientFe__Docto__0D7A0286" Association="Self.FK__PatientFe__Docto__0D7A0286">
-            <End Role="Doctors" EntitySet="Doctors" />
-            <End Role="PatientFeedback" EntitySet="PatientFeedback" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Prescript__Docto__151B244E" Association="Self.FK__Prescript__Docto__151B244E">
-            <End Role="Doctors" EntitySet="Doctors" />
-            <End Role="Prescriptions" EntitySet="Prescriptions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Financial__Patie__7F2BE32F" Association="Self.FK__Financial__Patie__7F2BE32F">
+          <AssociationSet Name="FK__Financial__Patie__395884C4" Association="Self.FK__Financial__Patie__395884C4">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="FinancialTransactions" EntitySet="FinancialTransactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Financial__Servi__00200768" Association="Self.FK__Financial__Servi__00200768">
+          <AssociationSet Name="FK__Financial__Servi__3A4CA8FD" Association="Self.FK__Financial__Servi__3A4CA8FD">
             <End Role="Services_" EntitySet="Services_" />
             <End Role="FinancialTransactions" EntitySet="FinancialTransactions" />
           </AssociationSet>
-          <AssociationSet Name="FK__MedicalRe__Patie__797309D9" Association="Self.FK__MedicalRe__Patie__797309D9">
+          <AssociationSet Name="FK__MedicalRe__Patie__339FAB6E" Association="Self.FK__MedicalRe__Patie__339FAB6E">
             <End Role="Patients" EntitySet="Patients" />
             <End Role="MedicalRecords" EntitySet="MedicalRecords" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prescript__Medic__160F4887" Association="Self.FK__Prescript__Medic__160F4887">
-            <End Role="Medications" EntitySet="Medications" />
-            <End Role="Prescriptions" EntitySet="Prescriptions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reports__Generat__09A971A2" Association="Self.FK__Reports__Generat__09A971A2">
+          <AssociationSet Name="FK__Reports__Generat__43D61337" Association="Self.FK__Reports__Generat__43D61337">
             <End Role="Passwords" EntitySet="Passwords" />
             <End Role="Reports" EntitySet="Reports" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PatientFe__Patie__0C85DE4D" Association="Self.FK__PatientFe__Patie__0C85DE4D">
-            <End Role="Patients" EntitySet="Patients" />
-            <End Role="PatientFeedback" EntitySet="PatientFeedback" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Prescript__Patie__14270015" Association="Self.FK__Prescript__Patie__14270015">
-            <End Role="Patients" EntitySet="Patients" />
-            <End Role="Prescriptions" EntitySet="Prescriptions" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -853,18 +559,6 @@
                 <ScalarProperty Name="AppointmentDateTime" ColumnName="AppointmentDateTime" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ChangeLog">
-            <EntityTypeMapping TypeName="cln_vladModel.ChangeLog">
-              <MappingFragment StoreEntitySet="ChangeLog">
-                <ScalarProperty Name="LogID" ColumnName="LogID" />
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
-                <ScalarProperty Name="ChangeType" ColumnName="ChangeType" />
-                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
-                <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -922,15 +616,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Medications">
-            <EntityTypeMapping TypeName="cln_vladModel.Medications">
-              <MappingFragment StoreEntitySet="Medications">
-                <ScalarProperty Name="MedicationID" ColumnName="MedicationID" />
-                <ScalarProperty Name="MedicationName" ColumnName="MedicationName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Passwords">
             <EntityTypeMapping TypeName="cln_vladModel.Passwords">
               <MappingFragment StoreEntitySet="Passwords">
@@ -938,18 +623,6 @@
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
                 <ScalarProperty Name="Salt" ColumnName="Salt" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PatientFeedback">
-            <EntityTypeMapping TypeName="cln_vladModel.PatientFeedback">
-              <MappingFragment StoreEntitySet="PatientFeedback">
-                <ScalarProperty Name="FeedbackID" ColumnName="FeedbackID" />
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="FeedbackDate" ColumnName="FeedbackDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -962,18 +635,6 @@
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Prescriptions">
-            <EntityTypeMapping TypeName="cln_vladModel.Prescriptions">
-              <MappingFragment StoreEntitySet="Prescriptions">
-                <ScalarProperty Name="PrescriptionID" ColumnName="PrescriptionID" />
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
-                <ScalarProperty Name="MedicationID" ColumnName="MedicationID" />
-                <ScalarProperty Name="Dosage" ColumnName="Dosage" />
-                <ScalarProperty Name="Instructions" ColumnName="Instructions" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

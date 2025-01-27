@@ -17,7 +17,6 @@ namespace Program
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Passwords()
         {
-            this.ChangeLog = new HashSet<ChangeLog>();
             this.Reports = new HashSet<Reports>();
         }
     
@@ -26,8 +25,6 @@ namespace Program
         public string PasswordHash { get; set; }
         public string Salt { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChangeLog> ChangeLog { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reports> Reports { get; set; }
     }
