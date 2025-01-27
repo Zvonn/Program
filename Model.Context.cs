@@ -19,7 +19,8 @@ namespace Program
             : base("name=Entities")
         {
         }
-    
+        private static Entities _context;
+        public static Entities GetContext() => _context ?? (_context = new Entities());
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
